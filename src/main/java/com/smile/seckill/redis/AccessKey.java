@@ -1,7 +1,7 @@
 package com.smile.seckill.redis;
 
 /**
- *
+ * 接口限流 key 定义
  */
 public class AccessKey extends BasePrefix{
 
