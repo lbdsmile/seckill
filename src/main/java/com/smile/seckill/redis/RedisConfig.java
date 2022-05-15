@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "redis")
 public class RedisConfig {
-    private String host;
-    private int port;
-    private int timeout;//秒
-    private String password;
-    private int poolMaxTotal;
-    private int poolMaxIdle;
-    private int poolMaxWait;//秒
+    private String host; // Redis 服务ip地址
+    private int port; // Redis 服务端口号
+    private int timeout; // Redis 连接超时时间,单位 秒s
+    private String password; // Redis 登录密码
+    private int poolMaxTotal; // Redis 连接池中总连接的最大数量
+    private int poolMaxIdle; // Redis 连接池中空闲连接的最大数量
+    private int poolMaxWait;// Redis 获取连接的最大等待时间,单位 秒s
 }
