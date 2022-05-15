@@ -1,12 +1,12 @@
 package com.smile.seckill.result;
 
-import lombok.Getter;
+import lombok.Data;
 
 /**
  * 通用返回报文定义类
  * @param <T>
  */
-@Getter
+@Data
 public class Result<T> {
     private int code; // 错误码
     private String msg; // 错误信息
@@ -14,6 +14,9 @@ public class Result<T> {
 
     /**
      * 成功
+     * @param data
+     * @param <T>
+     * @return
      */
     public static <T> Result<T> success(T data){
         return new Result<T>(data);
@@ -21,6 +24,9 @@ public class Result<T> {
 
     /**
      * 失败
+     * @param codeMsg
+     * @param <T>
+     * @return
      */
     public static <T> Result<T> error(CodeMsg codeMsg){
         return new Result<T>(codeMsg);
@@ -41,11 +47,19 @@ public class Result<T> {
      * @param codeMsg
      */
     private Result (CodeMsg codeMsg){
-        if (null == codeMsg){
-            return;
+        if (null != codeMsg){
+            this.code = codeMsg.getCode();
+            this.msg = codeMsg.getMsg();
         }
-        this.code = codeMsg.getCode();
-        this.msg = codeMsg.getMsg();
-        this.data = data;
+    }
+
+    /**
+     * 返回特殊返回码与特殊返回信息
+     * @param code
+     * @param msg
+     */
+    private Result(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 }
