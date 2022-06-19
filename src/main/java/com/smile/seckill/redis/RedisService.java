@@ -29,10 +29,17 @@ public class RedisService {
      * @return
      */
     public <T> T get(KeyPrefix prefix, String key, Class<T> clazz){
-        Jedis jedis = jedisPool.getResource();
-        String str = jedis.get(prefix.getPrefix() + key);
-        T t = stringToBean(str, clazz);
-        return t;
+        Jedis jedis = null;
+        try {
+            jedis =  jedisPool.getResource();
+            //生成真正的key
+            String realKey  = prefix.getPrefix() + key;
+            String str = jedis.get(realKey);
+            T t = stringToBean(str, clazz);
+            return t;
+        }finally {
+            returnToPool(jedis);
+        }
     }
 
     /**

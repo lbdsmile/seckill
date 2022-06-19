@@ -8,5 +8,5 @@ public class OrderKey extends BasePrefix {
     public OrderKey(String prefix) {
         super(prefix);
     }
-    public static OrderKey getSecKillOrderByUidGid = new OrderKey("moug");
+    public static OrderKey getSeckillOrderByUidGid = new OrderKey("moug");
 }
