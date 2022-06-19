@@ -34,6 +34,4 @@ public interface OrderDao {
 
 	@Delete("delete from seckill_order")
 	public void deleteSeckillOrders();
-
-	
 }
